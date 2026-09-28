@@ -171,13 +171,14 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 /* Formats */
 .formats { background: var(--band); }
 .formats .section-title { margin-bottom: 72px; }
-.formats-row { display: flex; align-items: flex-end; gap: 48px; }
+.formats-row { display: flex; align-items: flex-start; gap: 48px; }
 .format { margin: 0; min-width: 0; }
 .format img { width: 100%; object-fit: cover; border-radius: 2px; }
-.format--16x9 { flex: 600 1 0; } .format--16x9 img { aspect-ratio: 16 / 9; }
-.format--9x16 { flex: 216 1 0; } .format--9x16 img { aspect-ratio: 9 / 16; }
-.format--1x1 { flex: 288 1 0; }  .format--1x1 img { aspect-ratio: 1; }
-.format--4x5 { flex: 288 1 0; }  .format--4x5 img { aspect-ratio: 4 / 5; }
+/* flex-grow = aspect ratio (w/h), so every image in a row lands at the same height. */
+.format--16x9 { flex: 1.7778 1 0; } .format--16x9 img { aspect-ratio: 16 / 9; }
+.format--9x16 { flex: 0.5625 1 0; } .format--9x16 img { aspect-ratio: 9 / 16; }
+.format--1x1  { flex: 1 1 0; }      .format--1x1 img  { aspect-ratio: 1; }
+.format--4x5  { flex: 0.8 1 0; }    .format--4x5 img  { aspect-ratio: 4 / 5; }
 .format figcaption { margin-top: 20px; }
 .format-title { display: block; font-family: var(--font-display); font-size: 28px; line-height: 1.2; }
 .format-spec { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
