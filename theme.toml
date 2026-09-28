@@ -1,12 +1,12 @@
 name = "Scrappie Reel"
 license = "Apache-2.0"
-licenselink = "https://github.com/jeradsloan/scrappie-reel/blob/main/LICENSE"
+licenselink = "https://github.com/storydivision/scrappie-reel/blob/main/LICENSE"
 description = "A dark, editorial one-page portfolio for small video studios and filmmakers: full-bleed hero video, numbered film grid with hover trailers, and a native <dialog> player for Vimeo, YouTube, MP4 or self-hosted HLS."
-homepage = "https://github.com/jeradsloan/scrappie-reel"
+homepage = "https://github.com/storydivision/scrappie-reel"
 tags = ["portfolio", "video", "one-page", "dark", "minimal", "responsive", "accessible", "single-page", "agency", "film"]
 features = ["hero-video", "video-player", "hls", "vimeo", "youtube", "i18n", "no-build-dependencies"]
 min_version = "0.128.0"
 
 [author]
-  name = "jeradsloan"
-  homepage = "https://github.com/jeradsloan"
+  name = "Story Division"
+  homepage = "https://github.com/storydivision"

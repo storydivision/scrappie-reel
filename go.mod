@@ -1,3 +1,3 @@
-module github.com/jeradsloan/scrappie-reel
+module github.com/storydivision/scrappie-reel
 
 go 1.21

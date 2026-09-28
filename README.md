@@ -24,7 +24,7 @@ Built to stay small: plain CSS, a few kilobytes of vanilla JS, no Node, no SCSS,
 As a git submodule:
 
 ```sh
-git submodule add https://github.com/jeradsloan/scrappie-reel.git themes/scrappie-reel
+git submodule add https://github.com/storydivision/scrappie-reel.git themes/scrappie-reel
 ```
 
 ```yaml
@@ -37,7 +37,7 @@ Or as a Hugo Module:
 ```yaml
 module:
   imports:
-    - path: github.com/jeradsloan/scrappie-reel
+    - path: github.com/storydivision/scrappie-reel
 ```
 
 ## Configure
