@@ -1,0 +1,15 @@
+{{- $c := site.Params.contact | default dict -}}
+<section class="section contact" id="contact">
+  <h2 class="eyebrow">{{ $c.eyebrow | default (T "contact") }}</h2>
+  <p class="display contact-heading">{{ $c.heading | default (T "contactHeading") | safeHTML }}<span class="dot">.</span></p>
+  <div class="contact-row">
+    <p class="contact-email">{{ partial "email.html" . }}</p>
+    <ul class="socials">
+      {{ with site.Params.instagram }}<li><a href="https://instagram.com/{{ . }}" rel="noopener">Instagram</a></li>{{ end }}
+      {{ with site.Params.tiktok }}<li><a href="https://tiktok.com/@{{ . }}" rel="noopener">TikTok</a></li>{{ end }}
+      {{ with site.Params.twitter }}<li><a href="https://x.com/{{ . }}" rel="noopener">X</a></li>{{ end }}
+      {{ with site.Params.linkedin }}<li><a href="https://www.linkedin.com/{{ . }}" rel="noopener">LinkedIn</a></li>{{ end }}
+      {{ with site.Params.vimeo }}<li><a href="https://vimeo.com/{{ . }}" rel="noopener">Vimeo</a></li>{{ end }}
+    </ul>
+  </div>
+</section>

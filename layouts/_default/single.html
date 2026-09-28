@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="page">
+  <h1>{{ .Title }}</h1>
+  {{ if eq .Section "blog" }}<p class="page-meta">{{ .Date.Format (site.Params.dateform | default "January 2, 2006") }}</p>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+  {{ if eq .Section "blog" }}
+  <nav class="page-pager" aria-label="{{ T "morePosts" }}">
+    {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+  </nav>
+  {{ end }}
+</article>
+{{ end }}

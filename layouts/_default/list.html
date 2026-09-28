@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="page">
+  <h1>{{ .Title }}</h1>
+  <ul class="post-list">
+    {{ range .Pages }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="page-meta">{{ .Date.Format (site.Params.dateform | default "January 2, 2006") }}</span></li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

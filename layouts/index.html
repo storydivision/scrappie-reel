@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ partial "hero.html" . }}
+{{ partial "work.html" . }}
+{{ partial "about.html" . }}
+{{ partial "formats.html" . }}
+{{ partial "contact.html" . }}
+{{ partial "player.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ with where site.RegularPages "Section" "gallery" }}
+<script src="{{ (resources.Get "js/player.js" | minify | fingerprint).RelPermalink }}" defer></script>
+{{ end }}
+{{ end }}

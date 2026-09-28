@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "en" }}">
+{{ partial "head.html" . }}
+<body id="top" class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
+<a class="skip" href="#main">{{ T "skipToContent" }}</a>
+{{ partial "header.html" . }}
+<main id="main">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "footer.html" . }}
+<script src="{{ (resources.Get "js/site.js" | minify | fingerprint).RelPermalink }}" defer></script>
+{{ block "scripts" . }}{{ end }}
+</body>
+</html>

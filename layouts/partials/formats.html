@@ -1,0 +1,14 @@
+{{ with site.Params.formats }}
+<section class="section formats" aria-labelledby="formats-title">
+  <p class="eyebrow">{{ .eyebrow | default (T "formats") }}</p>
+  <h2 class="section-title" id="formats-title">{{ .heading | default (T "formatsHeading") }}</h2>
+  <div class="formats-row">
+    {{ range .items }}
+    <figure class="format format--{{ .ratio | default "16x9" }}">
+      <img src="{{ .image | relURL }}" alt="{{ .alt | default "" }}" loading="lazy" decoding="async">
+      <figcaption><span class="format-title">{{ .title }}</span>{{ with .spec }}<span class="format-spec">{{ . }}</span>{{ end }}</figcaption>
+    </figure>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

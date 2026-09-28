@@ -1,0 +1,50 @@
+{{- $b := site.Params.brand | default dict -}}
+{{- $name := site.Params.name | default site.Title -}}
+{{- $title := cond .IsHome site.Title (printf "%s | %s" .Title $name) -}}
+{{- $desc := .Description | default site.Params.description -}}
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+{{ with $desc }}<meta name="description" content="{{ . }}">
+<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with site.Params.opengraphImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+{{ with site.Params.twitter }}<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ . }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+<meta name="theme-color" content="{{ $b.colorGround | default "#0B0C14" }}">
+
+{{- /* Video.js assets are lazy-loaded by player.js; paths handed over here. */ -}}
+{{ $vjs := false }}
+{{ range where site.RegularPages "Section" "gallery" }}
+  {{ if and .Params.video (not (findRE `vimeo\.com|youtu\.?be` .Params.video)) }}{{ $vjs = true }}{{ end }}
+{{ end }}
+{{ if $vjs }}
+{{ $vjsCSS := resources.Get "vendor/video.js/video-js.min.css" | fingerprint }}
+{{ $vjsJS := resources.Get "vendor/video.js/video.min.js" | fingerprint }}
+<script>window.__vjsAssets={css:"{{ $vjsCSS.RelPermalink }}",js:"{{ $vjsJS.RelPermalink }}"};</script>
+{{ end }}
+
+{{ partial "fonts.html" . }}
+{{- $vars := printf "--ground:%s;--text:%s;--muted:%s;--accent:%s;--font-display:\"%s\",%s;--font-body:\"%s\",%s;"
+    ($b.colorGround | default "#0B0C14")
+    ($b.colorText | default "#F3F1EA")
+    ($b.colorMuted | default "#9A9CAE")
+    ($b.colorAccent | default "#FFAA01")
+    ($b.fontDisplay | default "Instrument Serif") ($b.fontDisplayStack | default "Georgia, serif")
+    ($b.fontBody | default "Instrument Sans") ($b.fontBodyStack | default "system-ui, sans-serif") -}}
+{{- with $b.heroMosaicUrl }}{{ $vars = printf "%s--hero-mosaic:url(%s);" $vars (. | relURL) }}{{ end }}
+<style>:root{ {{- $vars | safeCSS -}} }</style>
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ if site.Params.customCSS }}{{ with resources.Get "css/custom.css" }}
+<link rel="stylesheet" href="{{ (. | minify | fingerprint).RelPermalink }}">
+{{ end }}{{ end }}
+</head>

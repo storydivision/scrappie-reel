@@ -1,0 +1,30 @@
+{{- $w := site.Params.work | default dict -}}
+{{ with where site.RegularPages.Reverse "Section" "gallery" }}
+<section class="section work" id="work">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">{{ $w.eyebrow | default (T "selectedWork") }}</p>
+      <h2 class="section-title">{{ $w.heading | default (T "recentFilms") }}</h2>
+    </div>
+    {{ with $w.intro }}<p class="section-intro">{{ . }}</p>{{ end }}
+  </div>
+  <ol class="work-grid">
+    {{ range $i, $p := . }}
+    {{ $stem := replaceRE `\.[^.]+$` "" .Params.image }}
+    <li>
+      <a class="tile" href="#film-{{ .File.ContentBaseName }}" data-film="film-{{ .File.ContentBaseName }}">
+        <span class="tile-media">
+          <img src="{{ printf "images/%s" .Params.image | relURL }}" alt="" loading="lazy" decoding="async">
+          {{ if .Params.video }}<video data-trailer muted loop playsinline preload="none" aria-hidden="true"><source src="{{ printf "images/%s.mp4" $stem | relURL }}" type="video/mp4"></video>{{ end }}
+        </span>
+        <span class="tile-caption">
+          <span class="tile-num">{{ printf "%02d" (add $i 1) }}</span>
+          <span class="tile-title">{{ .Title }}</span>
+          {{ with .Params.client }}<span class="tile-client">{{ . }}</span>{{ end }}
+        </span>
+      </a>
+    </li>
+    {{ end }}
+  </ol>
+</section>
+{{ end }}

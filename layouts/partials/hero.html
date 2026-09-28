@@ -1,0 +1,25 @@
+{{- $h := site.Params.hero | default dict -}}
+<section class="hero" aria-label="{{ T "intro" }}">
+  {{ with $h.video }}
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"{{ with $h.poster }} poster="{{ . | relURL }}"{{ end }}>
+    <source src="{{ . | relURL }}" type="video/mp4">
+  </video>
+  {{ end }}
+  {{ with site.Params.brand.heroMosaicUrl }}<div class="hero-mosaic" aria-hidden="true"></div>{{ end }}
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div>
+      {{ with $h.eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+      <h1 class="display">{{ $h.headline | default site.Title | safeHTML }}<span class="dot">.</span></h1>
+    </div>
+    <div class="hero-aside">
+      {{ with site.Params.description }}<p>{{ . }}</p>{{ end }}
+      {{ with $h.reel }}{{ with site.GetPage . }}
+      <a class="reel-btn" href="#film-{{ .File.ContentBaseName }}" data-film="film-{{ .File.ContentBaseName }}">
+        <span class="reel-btn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg></span>
+        {{ $h.reelLabel | default (T "watchReel") }}
+      </a>
+      {{ end }}{{ end }}
+    </div>
+  </div>
+</section>

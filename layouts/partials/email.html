@@ -1,0 +1,2 @@
+{{- /* Split address; site.js reassembles it into a mailto link (keeps it out of raw HTML for scrapers). */ -}}
+{{ with site.Params.email }}{{ $p := split . "@" }}<span class="obf-email" data-u="{{ index $p 0 }}" data-d="{{ index $p 1 }}"><noscript>{{ index $p 0 }} [at] {{ replace (index $p 1) "." " [dot] " }}</noscript></span>{{ end }}

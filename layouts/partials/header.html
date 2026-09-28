@@ -1,0 +1,21 @@
+{{- $name := site.Params.name | default site.Title -}}
+<header class="site-header{{ if .IsHome }} site-header--overlay{{ end }}">
+  <a class="brand" href="{{ "/" | relURL }}">
+    {{- with site.Params.logo }}<img src="{{ . | relURL }}" alt="{{ $name }}">{{ else }}{{ $name }}{{ end -}}
+  </a>
+  <nav class="nav" aria-label="{{ T "mainNav" }}">
+    {{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+    <a class="pill" href="{{ "/#contact" | relURL }}">{{ site.Params.ctaLabel | default (T "startProject") }}</a>
+  </nav>
+  <button class="icon-btn menu-btn" type="button" popovertarget="menu" aria-label="{{ T "openMenu" }}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 9h16M4 15h16"/></svg>
+  </button>
+  <div id="menu" class="menu" popover>
+    <button class="icon-btn menu-close" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="{{ T "closeMenu" }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav aria-label="{{ T "menu" }}">
+      {{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+    </nav>
+  </div>
+</header>
