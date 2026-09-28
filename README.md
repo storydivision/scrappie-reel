@@ -138,6 +138,19 @@ More about how you work…
 - **Built to flex.** Same story, shaped for wherever it needs to live.
 ```
 
+### Contact: `content/contact.md` (optional)
+
+Its body renders as intro copy under the Contact heading. Its title becomes the section eyebrow unless `params.contact.eyebrow` is set.
+
+```markdown
+---
+title: Contact
+build: { render: never, list: never }
+---
+
+Got a project? Tell us about it.
+```
+
 ## Customize
 
 1. **Config first:** colors, fonts, copy and sections all come from `params`.

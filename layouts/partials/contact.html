@@ -1,7 +1,9 @@
 {{- $c := site.Params.contact | default dict -}}
+{{- $page := site.GetPage "/contact" -}}
 <section class="section contact" id="contact">
-  <h2 class="eyebrow">{{ $c.eyebrow | default (T "contact") }}</h2>
+  <h2 class="eyebrow">{{ $c.eyebrow | default (and $page $page.Title) | default (T "contact") }}</h2>
   <p class="display contact-heading">{{ $c.heading | default (T "contactHeading") | safeHTML }}<span class="dot">.</span></p>
+  {{ with $page }}{{ with .Content }}<div class="contact-intro">{{ . }}</div>{{ end }}{{ end }}
   <div class="contact-row">
     <p class="contact-email">{{ partial "email.html" . }}</p>
     <ul class="socials">
