@@ -24,7 +24,6 @@
   function initVjsPlayer(el) {
     if (el.__vjsPlayer) return el.__vjsPlayer;
     var player = videojs(el, {
-      fill: true,
       playsinline: true,
       preload: 'metadata',
       playbackRates: [0.5, 1, 1.25, 1.5, 2],
