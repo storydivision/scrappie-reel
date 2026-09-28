@@ -73,6 +73,11 @@ params:
   work:
     intro: "A short list, on purpose."   # optional; eyebrow / heading also settable
 
+  logos:                                 # optional section: scrolling client logos
+    items:
+      - { name: "Client", image: /images/logos/client.svg }   # white-on-dark recolor via CSS filter
+    # eyebrow, heading (HTML ok), duration ("60s") also settable
+
   formats:                               # optional section
     items:
       - { title: "Short film",   spec: "16:9 · YouTube, web", ratio: "16x9", image: /images/wide.jpg }

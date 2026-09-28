@@ -168,6 +168,24 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 .about-body li strong { display: block; margin: 16px 0 12px; font-family: var(--font-display); font-size: 34px; font-weight: 400; line-height: 1.1; color: var(--text); }
 .about-body li strong em { font-style: normal; }
 
+/* Logo garden */
+.logos { padding-block: clamp(56px, 6vw, 88px); text-align: center; }
+.logos .eyebrow { margin-bottom: 12px; }
+.logos .section-title { font-size: clamp(32px, 3.6vw, 52px); margin-bottom: 20px; }
+.logos .section-title em { font-style: italic; color: var(--accent); }
+.logos-marquee {
+  margin-inline: calc(var(--gutter) * -1); overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.logos-track { display: flex; width: max-content; animation: logos-scroll 60s linear infinite; }
+.logos-marquee:hover .logos-track, .logos-marquee:focus-within .logos-track { animation-play-state: paused; }
+.logos-list { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
+.logos-list li { display: flex; align-items: center; height: 72px; padding: 0 clamp(24px, 3vw, 44px); opacity: .6; transition: opacity .25s, transform .25s; }
+.logos-list li:hover { opacity: 1; transform: translateY(-4px); }
+.logos-list img { height: 32px; width: auto; max-width: none; filter: brightness(0) invert(1); }
+@keyframes logos-scroll { to { transform: translate3d(-50%, 0, 0); } }
+
 /* Formats */
 .formats { background: var(--band); }
 .formats .section-title { margin-bottom: 72px; }
@@ -294,6 +312,7 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
   .formats-row { flex-wrap: wrap; gap: 36px 16px; }
   .format--16x9 { flex-basis: 100%; }
   .format-title { font-size: 24px; }
+  .logos-list img { height: 26px; }
 
   .contact-heading { margin: 20px 0 40px; }
   .contact-intro { margin: -8px 0 32px; font-size: 16px; }
@@ -317,4 +336,8 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
   .hero-mosaic { display: block; animation: none; }
   .tile-media img, .tile-media video, .brand img { transition: none; }
   .player[open] { animation: none; }
+  .logos-track { animation: none; width: auto; }
+  .logos-marquee { margin-inline: 0; -webkit-mask-image: none; mask-image: none; }
+  .logos-list { flex-wrap: wrap; justify-content: center; }
+  .logos-list[aria-hidden] { display: none; }
 }

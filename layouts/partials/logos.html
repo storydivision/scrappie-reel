@@ -1,0 +1,16 @@
+{{- $l := site.Params.logos | default dict -}}
+{{ with $l.items }}{{ $items := . }}
+<section class="section logos" aria-labelledby="logos-title">
+  <p class="eyebrow">{{ $l.eyebrow | default (T "trustedBy") }}</p>
+  <h2 class="section-title" id="logos-title">{{ $l.heading | default (T "logosHeading") | safeHTML }}</h2>
+  <div class="logos-marquee">
+    <div class="logos-track"{{ with $l.duration }} style="animation-duration:{{ . }}"{{ end }}>
+      {{ range $copy := seq 2 }}
+      <ul class="logos-list"{{ if gt $copy 1 }} aria-hidden="true"{{ end }}>
+        {{ range $items }}<li><img src="{{ .image | relURL }}" alt="{{ if eq $copy 1 }}{{ .name }}{{ end }}" loading="lazy" decoding="async"></li>{{ end }}
+      </ul>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
