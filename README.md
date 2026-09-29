@@ -8,8 +8,10 @@ Built to stay small: plain CSS, a few kilobytes of vanilla JS, no Node, no SCSS,
 
 - **Hero video** background loop, with an optional panning image mosaic for mobile / Low Power Mode / `prefers-reduced-motion`
 - **Film grid**: numbered tiles, optional client label, silent hover trailers on pointer devices
+- **Logo garden**: optional looping client-logo marquee with hover captions; pauses on hover, static wrapped row under `prefers-reduced-motion`
 - **Player** built on native `<dialog>`: Vimeo, YouTube (privacy-enhanced), plain MP4, or self-hosted **HLS** via vendored [Video.js](https://videojs.com/) (loaded only when needed). Previous/next, deep links (`/#film-<slug>`), Escape to close
 - **Mobile menu** on the native Popover API
+- **Social icons** (Instagram, TikTok, X, LinkedIn, Vimeo) as inline SVG, no icon font or third-party requests
 - **Brand tokens** (colors, fonts) set from config, no CSS edits needed
 - **Accessible by default**: one `h1`, skip link, real links and buttons, visible focus, reduced-motion support, 44px touch targets
 - **i18n** for every UI string (`i18n/en.toml`)
@@ -75,8 +77,12 @@ params:
 
   logos:                                 # optional section: scrolling client logos
     items:
-      - { name: "Client", image: /images/logos/client.svg }   # white-on-dark recolor via CSS filter
+      - { name: "Client", image: /images/logos/client.svg }
     # eyebrow, heading (HTML ok), duration ("60s") also settable
+    # Logos are forced solid white by a CSS filter, so use TRANSPARENT PNG/SVG only;
+    # an opaque background renders as a white block. `name` is the hover caption + alt text.
+    # Each logo's own aspect ratio sets its width at a fixed 40px height (32px on mobile), so pad
+    # or scale small/wide marks in the file to balance optical weight. Items repeat until the loop fills.
 
   formats:                               # optional section
     items:
