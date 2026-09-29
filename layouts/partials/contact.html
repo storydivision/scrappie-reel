@@ -7,11 +7,11 @@
   <div class="contact-row">
     <p class="contact-email">{{ partial "email.html" . }}</p>
     <ul class="socials">
-      {{ with site.Params.instagram }}<li><a href="https://instagram.com/{{ . }}" rel="noopener">Instagram</a></li>{{ end }}
-      {{ with site.Params.tiktok }}<li><a href="https://tiktok.com/@{{ . }}" rel="noopener">TikTok</a></li>{{ end }}
-      {{ with site.Params.twitter }}<li><a href="https://x.com/{{ . }}" rel="noopener">X</a></li>{{ end }}
-      {{ with site.Params.linkedin }}<li><a href="https://www.linkedin.com/{{ . }}" rel="noopener">LinkedIn</a></li>{{ end }}
-      {{ with site.Params.vimeo }}<li><a href="https://vimeo.com/{{ . }}" rel="noopener">Vimeo</a></li>{{ end }}
+      {{ with site.Params.instagram }}<li><a href="https://instagram.com/{{ . }}" rel="noopener" aria-label="Instagram" title="Instagram">{{ partial "social-icon.html" "instagram" }}</a></li>{{ end }}
+      {{ with site.Params.tiktok }}<li><a href="https://tiktok.com/@{{ . }}" rel="noopener" aria-label="TikTok" title="TikTok">{{ partial "social-icon.html" "tiktok" }}</a></li>{{ end }}
+      {{ with site.Params.twitter }}<li><a href="https://x.com/{{ . }}" rel="noopener" aria-label="X" title="X">{{ partial "social-icon.html" "x" }}</a></li>{{ end }}
+      {{ with site.Params.linkedin }}<li><a href="https://www.linkedin.com/{{ . }}" rel="noopener" aria-label="LinkedIn" title="LinkedIn">{{ partial "social-icon.html" "linkedin" }}</a></li>{{ end }}
+      {{ with site.Params.vimeo }}<li><a href="https://vimeo.com/{{ . }}" rel="noopener" aria-label="Vimeo" title="Vimeo">{{ partial "social-icon.html" "vimeo" }}</a></li>{{ end }}
     </ul>
   </div>
 </section>

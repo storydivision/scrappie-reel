@@ -4,7 +4,7 @@
   --line-strong: color-mix(in srgb, var(--text) 20%, transparent);
   --band: color-mix(in srgb, var(--text) 3.5%, transparent);
   --gutter: clamp(24px, 8.3vw, 120px);
-  --section-y: clamp(96px, 11vw, 160px);
+  --section-y: clamp(64px, 7vw, 104px);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -169,7 +169,8 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 .about-body li strong em { font-style: normal; }
 
 /* Logo garden */
-.logos { padding-block: clamp(56px, 6vw, 88px); text-align: center; }
+.work:has(+ .logos) { padding-bottom: 56px; }
+.logos { padding-block: 0 clamp(56px, 6vw, 88px); text-align: center; }
 .logos .eyebrow { margin-bottom: 12px; }
 .logos .section-title { font-size: clamp(32px, 3.6vw, 52px); margin-bottom: 20px; }
 .logos .section-title em { font-style: italic; color: var(--accent); }
@@ -181,9 +182,14 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 .logos-track { display: flex; width: max-content; animation: logos-scroll 60s linear infinite; }
 .logos-marquee:hover .logos-track, .logos-marquee:focus-within .logos-track { animation-play-state: paused; }
 .logos-list { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
-.logos-list li { display: flex; align-items: center; height: 72px; padding: 0 clamp(24px, 3vw, 44px); opacity: .6; transition: opacity .25s, transform .25s; }
+.logos-list li { position: relative; display: flex; align-items: center; height: 96px; padding: 0 clamp(24px, 3vw, 44px); opacity: .6; transition: opacity .25s, transform .25s; }
 .logos-list li:hover { opacity: 1; transform: translateY(-4px); }
-.logos-list img { height: 32px; width: auto; max-width: none; filter: brightness(0) invert(1); }
+.logo-name {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in srgb, var(--muted) 80%, var(--ground)); opacity: 0; transition: opacity .25s;
+}
+.logos-list li:hover .logo-name { opacity: 1; }
+.logos-list img { height: 40px; width: auto; max-width: none; filter: brightness(0) invert(1); }
 @keyframes logos-scroll { to { transform: translate3d(-50%, 0, 0); } }
 
 /* Formats */
@@ -202,7 +208,7 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 .format-spec { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
 
 /* Contact */
-.contact { padding-top: clamp(112px, 12.5vw, 180px); }
+.contact { padding-bottom: calc(var(--section-y) * .75); }
 .contact-heading { margin: 28px 0 64px; font-size: clamp(72px, 10.5vw, 152px); line-height: 0.94; }
 .contact-intro { max-width: 36em; margin: -16px 0 48px; font-size: 18px; color: color-mix(in srgb, var(--text) 70%, var(--muted)); }
 .contact-intro p { margin: 0 0 1em; }
@@ -210,8 +216,10 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
 .contact-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px; }
 .contact-email { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 3.3vw, 48px); line-height: 1.2; }
 .contact-email a { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: .25em; }
-.socials { list-style: none; margin: 0; padding: 0; display: flex; gap: 36px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.16em; }
-.socials a { display: inline-block; padding: 12px 0; text-decoration: none; }
+.socials { list-style: none; margin: 0 -11px 0 0; padding: 0; display: flex; gap: 8px; }
+.socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: var(--muted); transition: color .2s, transform .2s; }
+.socials a:hover { color: var(--accent); transform: translateY(-2px); }
+.social-icon { display: block; }
 
 /* Footer */
 .site-footer {
@@ -312,12 +320,12 @@ h1, h2, h3 { font-weight: 400; margin: 0; }
   .formats-row { flex-wrap: wrap; gap: 36px 16px; }
   .format--16x9 { flex-basis: 100%; }
   .format-title { font-size: 24px; }
-  .logos-list img { height: 26px; }
+  .logos-list img { height: 32px; }
 
   .contact-heading { margin: 20px 0 40px; }
   .contact-intro { margin: -8px 0 32px; font-size: 16px; }
   .contact-row { display: block; }
-  .socials { gap: 28px; margin-top: 20px; font-size: 12px; }
+  .socials { margin: 20px 0 0 -11px; }
 
   .site-footer { padding-bottom: 32px; }
   .footer-logo { display: none; }
