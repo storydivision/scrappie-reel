@@ -131,6 +131,8 @@ Optional notes, shown under the player.
 
 **Hover trailer (optional):** put a short muted clip next to the still, with the same name and a `.mp4` extension (`static/images/gallery/my-film.mp4`).
 
+Each film's own URL (`/gallery/my-film/`) redirects to `/#film-my-film`, which opens the player. These redirect URLs are left out of `sitemap.xml` so search engines index only the home page.
+
 ### About: `content/about.md`
 
 The first paragraph becomes the large statement. A bullet list becomes numbered principles:
